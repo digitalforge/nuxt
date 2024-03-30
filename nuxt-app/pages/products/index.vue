@@ -14,7 +14,10 @@ definePageMeta({
 })
 
 //fetch the products from the fakestore api
-const { data: products } = await useFetch('https://fakestoreapi.com/products')
+//const { data: products } = await useFetch('https://fakestoreapi.com/products')
+const products = await fetch('https://fakestoreapi.com/products') // api for the get request
+  .then(response => response.json())
+  .then(data => data)
 </script>
 
 <style lang="scss" scoped></style>

@@ -25,6 +25,7 @@ console.log(props.product)
 <style scoped>
 .thumb {
   max-height: 120px;
+  min-height: 120px;
   max-width: 70%;
   margin: 0 auto;
 }
