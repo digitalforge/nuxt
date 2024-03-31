@@ -12,10 +12,19 @@
       dolores quisquam nobis officia molestias aliquam necessitatibus, tempora
       maiores magnam quos.
     </p>
+    <div>{{ data }}</div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+//const { data } = await useFetch('/api/ninja?name=mario')
+// const { data } = await useFetch('/api/ninja?name=mario', {
+//   method: 'POST',
+//   body: { age: 30 },
+// })
+
+const { data } = await useFetch('/api/currency/GBP')
+</script>
 
 <style scoped>
 h2 {
