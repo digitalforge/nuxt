@@ -11,7 +11,7 @@ export default defineEventHandler(async event => {
   //const { age } = await readBody(event)
 
   // api call with private key
-  // why not go with 'useFetch' ? when we are using server routes go with '$fetch' instead
+  // why not go with 'useFetch' ? - when we are using server routes go with '$fetch' instead
 
   // return {
   //   message: `Hello, ${name}! You are ${age} years old.`,
