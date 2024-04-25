@@ -10,6 +10,9 @@
 </template>
 
 <script setup>
+// import { useCartStore } from '@/stores/cartStore.js'
+
+// const cartStore = useCartStore()
 const { data: products } = await useFetch('http://localhost:4000/products')
 </script>
 

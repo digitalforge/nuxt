@@ -5,6 +5,7 @@ const cartUri = 'http://localhost:4000/cart/'
 export const useCartStore = defineStore('cart', {
   state: () => ({
     cart: [],
+    notifyObject: {},
   }),
   getters: {
     cartTotal() {
@@ -25,6 +26,8 @@ export const useCartStore = defineStore('cart', {
       //console.log(this.cart)
     },
     async addToCart(product) {
+      //clear the notifyObject f{} notification
+      this.notifyObject = {}
       //check to see if the product already exists
       const exists = this.cart.find(p => {
         return p.id === product.id
@@ -33,6 +36,11 @@ export const useCartStore = defineStore('cart', {
       //if it does exist, just update the quantity
       if (exists) {
         this.incQuantity(product)
+        this.notifyObject = {
+          title: product.title,
+          image: product.img,
+          message: `${product.title} added to cart`,
+        }
       }
 
       if (!exists) {
@@ -42,18 +50,32 @@ export const useCartStore = defineStore('cart', {
         await $fetch('http://localhost:4000/cart/', {
           method: 'post',
           body: JSON.stringify({ ...product, quantity: 1 }),
+        }).then(() => {
+          this.notifyObject = {
+            title: product.title,
+            image: product.img,
+            message: `${product.title} added to cart`,
+          }
         })
       }
     },
     async deleteFromCart(product) {
+      this.notifyObject = {} //clear the notifyObject f{} notification
       this.cart = this.cart.filter(p => p.id !== product.id)
 
       //NOTE - make delete request from the json server so its up to date
       await $fetch('http://localhost:4000/cart/' + product.id, {
         method: 'DELETE',
+      }).then(() => {
+        this.notifyObject = {
+          title: product.title,
+          image: product.img,
+          message: `${product.title} removed from cart`,
+        }
       })
     },
     async incQuantity(product) {
+      //this.notifyObject = {} //clear the notifyObject f{} notification
       let updatedProduct
       this.cart = this.cart.map(p => {
         if (p.id === product.id) {
@@ -67,9 +89,17 @@ export const useCartStore = defineStore('cart', {
       await $fetch('http://localhost:4000/cart/' + product.id, {
         method: 'PUT',
         body: JSON.stringify(updatedProduct),
+      }).then(() => {
+        // update the notifyObject f{} notification
+        // this.notifyObject = {
+        //   title: product.title,
+        //   image: product.img,
+        //   message: `${product.title} added to cart`,
+        // }
       })
     },
     async decQuantity(product) {
+      //this.notifyObject = {} //clear the notifyObject f{} notification
       let updatedProduct
       this.cart = this.cart.map(p => {
         if (p.id === product.id && p.quantity > 1) {
@@ -84,6 +114,13 @@ export const useCartStore = defineStore('cart', {
         await $fetch('http://localhost:4000/cart/' + product.id, {
           method: 'PUT',
           body: JSON.stringify(updatedProduct),
+        }).then(() => {
+          // update the notifyObject f{} notification
+          // this.notifyObject = {
+          //   title: product.title,
+          //   image: product.img,
+          //   message: `${product.title} removed from cart`,
+          // }
         })
       }
     },

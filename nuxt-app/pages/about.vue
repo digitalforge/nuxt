@@ -23,7 +23,7 @@
 //   body: { age: 30 },
 // })
 
-const { data } = await useFetch('/api/currency/GBP')
+const { data } = await useFetch('/api/currency/USD')
 </script>
 
 <style scoped>

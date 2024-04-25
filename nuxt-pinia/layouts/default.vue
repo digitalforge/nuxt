@@ -16,6 +16,10 @@
     <div class="wrapper">
       <slot />
     </div>
+    <Notifcations
+      :text="cartStore.notifyObject.message"
+      :image="cartStore.notifyObject.image"
+    />
   </div>
 </template>
 

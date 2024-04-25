@@ -5,7 +5,6 @@
 body {
   @apply bg-dark;
 }
-
 .wrapper {
   @apply my-8 max-w-5xl mx-auto;
 }
@@ -16,12 +15,4 @@ body {
 
 .btn {
   @apply bg-secondary py-1 px-2 rounded-sm text-lg;
-}
-
-.show-notification {
-  @apply opacity-100 translate-x-0;
-}
-
-.hide-notification {
-  @apply translate-x-14 p-4 opacity-0;
 }

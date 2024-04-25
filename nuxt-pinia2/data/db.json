@@ -1,5 +1,14 @@
 {
-  "cart": [],
+  "cart": [
+    {
+      "id": "2",
+      "title": "Poison Hammer",
+      "price": 100,
+      "description": "Hammer infused with posion gem magic.",
+      "img": "/img/hammer.png",
+      "quantity": 1
+    }
+  ],
   "products": [
     {
       "title": "Lava Potion",
